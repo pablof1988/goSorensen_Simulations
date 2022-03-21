@@ -1,3 +1,4 @@
+source("..\\forSimulations_sorensen.R")
 library(goSorensen)
 nSim <- 100000
 dRange <- c(0.15, 0.65)
