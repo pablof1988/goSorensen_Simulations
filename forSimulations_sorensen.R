@@ -57,7 +57,7 @@ getP11ToSim <- function(dRange, p10, p01, d0, nPoints = 21) {
 
 
 nsor_dis <- function (ct, alpha = 0.05, z.alpha = qnorm(alpha, lower.tail = F)) {
-  ct <- c(ct[4], ct[2], ct[3], ct[1])
+  ct <- c(ct[1], ct[3], ct[2], ct[4])
   dis <- dSorensen(ct)
   se <- seSorensen(ct)
   du <- dis + z.alpha * se
@@ -79,7 +79,7 @@ npr_rej <- function (nSim, n, p11, p1., p.1, d0, alpha = 0.05, z.alpha = qnorm(a
   se.mean <- mean(sor_samp[3, ])
   b.se <- se.mean - sor.se
   coverage <- sum(sor <= sor_samp[2, ])/nSim
-  c(d = sor, Pr.Eq = sum(rej, na.rm = T)/n_val, 
+  c(d = sor, Pr.Eq = sum(rej)/nSim, 
     `E(sor.samp)` = sor.mean, `bias(sor.samp)` = sor.mean - sor, true.se = sor.se, 
     `E(se.sor)` = se.mean, `bias(se.sor)` = b.se, coverage = coverage)
 }
